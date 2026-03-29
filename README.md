@@ -1,15 +1,108 @@
-# Student template
+# Deployment
 
-## Purpose of this repository
+[![Coverage Status](https://coveralls.io/repos/github/MomoYlinen/deployment/badge.svg?branch=main)](https://coveralls.io/github/MomoYlinen/deployment?branch=main)
 
-This is a project template for students participating in Software Testing course
-at LAB University of Applied Sciences.
+Tämä repo sisältää yksikkötestit annetulle JavaScript-kirjastolle sekä GitHub Actions- ja Coveralls-toteutuksen.
 
-The repository only contains the source code that is under testing, `package.json` skeleton
-and LICENSE file.
+## Käytetyt työkalut
 
-Simple unit tests and a GitHub Actions workflow have been added for the course assignment.
+- Node.js
+- `node:test`
+- `node:assert/strict`
+- `c8`
+- GitHub Actions
+- Coveralls
 
-Source code folder contains a separate license file that must **NOT** be removed under any circumstances!
-Removing this license file directly violates terms and conditions of the software under testing.
-Individuals who remove or modify the license file will also carry the consequences.
+## Asennus
+
+```bash
+npm install
+```
+
+## Testit
+
+```bash
+npm test
+```
+
+Coverage:
+
+```bash
+npm run coverage
+```
+
+Testit löytyvät `test/`-hakemistosta:
+- `test/number-utils.test.js`
+- `test/array-utils.test.js`
+- `test/string-object-utils.test.js`
+- `test/known-issues.test.js`
+
+`test/known-issues.test.js` sisältää skipatut testit löydetyille vioille.
+
+## Mitä testattiin
+
+Suoraan testattiin esimerkiksi nämä tiedostot:
+- `toNumber`
+- `toFinite`
+- `toInteger`
+- `defaultTo`
+- `defaultToAny`
+- `memoize`
+- `slice`
+- `drop`
+- `map`
+- `filter`
+- `reduce`
+- `words`
+- `capitalize`
+- `upperFirst`
+- `endsWith`
+- `get`
+- `keys`
+- `isObject`
+- `isArrayLike`
+- `isEmpty`
+- `toString`
+
+## Mitä ei testattu
+
+`.internal`-hakemisto
+
+Kaikkia tiedostoja ei testattu erikseen. Suoraan testaamatta jäivät esimerkiksi:
+- `isDate`
+- `isBoolean`
+- `add`
+- `divide`
+- `ceil`
+- `difference`
+- `every`
+- `at`
+
+## Coverage
+
+Paikallisessa ajossa statement coverage oli `93.53 %` ilman `.internal`-hakemistoa.
+
+## GitHub Actions
+
+Workflow löytyy tiedostosta `.github/workflows/test.yml`.
+
+Tekee nämä vaiheet:
+- checkout
+- Node.js-asennus
+- `npm ci`
+- `npm run coverage`
+- coverage-raportin lähetys Coverallsiin
+
+Workflow reagoi `push`- ja `pull_request`-tapahtumiin.
+
+## Coveralls
+
+Coveralls vastaanottaa coverage-raportin GitHub Actions -ajosta ja näyttää repositorion badge-prosentin sekä tarkemmat coverage-tiedot.
+
+## Löydetyt ongelmat
+
+Testauksen aikana löytyi issueiksi raportoidut ongelmat:
+- `chunk` palauttaa virheellisen rakenteen
+- `countBy` aloittaa laskurin väärästä arvosta
+- `clamp` ei rajoita arvoja oikein
+- `defaultTo` ei käytä oletusarvoa `NaN`-tapauksessa
