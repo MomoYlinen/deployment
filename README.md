@@ -41,7 +41,7 @@ Testit löytyvät `test/`-hakemistosta:
 
 ## Mitä testattiin
 
-Suoraan testattiin esimerkiksi nämä tiedostot:
+Suoraan testattiin nämä tiedostot:
 - `toNumber`
 - `toFinite`
 - `toInteger`
@@ -68,7 +68,7 @@ Suoraan testattiin esimerkiksi nämä tiedostot:
 
 `.internal`-hakemisto
 
-Kaikkia tiedostoja ei testattu erikseen. Suoraan testaamatta jäivät esimerkiksi:
+Kaikkia tiedostoja ei testattu erikseen. Suoraan testaamatta jäivät nämä tiedostot:
 - `isDate`
 - `isBoolean`
 - `add`
