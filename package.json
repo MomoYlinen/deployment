@@ -1,14 +1,17 @@
 {
   "name": "software-testing-assignment",
   "version": "1.0.0",
-  "description": "",
+  "description": "Unit tests and CI setup for the Software Testing course assignment.",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no tests are implemented yet \" && exit 1"
+    "test": "node --test",
+    "coverage": "c8 --exclude \"src/.internal/**\" --exclude \"test/**\" --reporter text --reporter lcov node --test",
+    "coverage:report": "npm run coverage"
   },
   "author": "",
   "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "c8": "^11.0.0"
+  }
 }
